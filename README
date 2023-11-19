@@ -1,0 +1,57 @@
+# SMake Function
+
+The `SMake` function is used to construct a new string from a source string containing various embedded tokens, and additional arguments that may be substituted into the template in place of tokens.
+
+## Parameters
+
+- `source`: The source string. This is the string that contains the tokens to be replaced.
+- `argList`: Optional arguments that are substituted into the source string. These arguments replace the tokens in the source string.
+
+## Tokens
+
+The following tokens should be implemented:
+
+- `%S`: Next Argument. Each argument from `argList` should be used only once.
+- `%N`: New line. Inserts a new line in the output string.
+- `%%`: A percentage sign. Inserts a percentage sign in the output string.
+- `%,`: Smart comma. Inserts a comma if there are any characters in the output string up to this point, otherwise inserts a blank.
+
+## Usage Examples
+
+Here are some examples of how to use the `SMake` function:
+
+
+### Example 1
+
+```
+string result = SMake("%S is not known.%NPlease enter a valid %S.", "Store", "centre");
+// Result: "Store is not known.\nPlease enter a valid centre."
+
+```
+
+### Example 2
+
+```
+string result = SMake("20%% VAT will be applied.");
+// Result: "20% VAT will be applied."
+```
+
+### Example 3
+
+```
+string result = null;
+int[] ids = { 1, 2, 3, 4 };
+foreach (int id in ids)
+{
+    result = SMake("%S%,%S", result, id);
+}
+// Result: "1,2,3,4".
+```
+
+### Example 4
+
+```
+string result = SMake("%%%S%% %S", "STATUS", 500);
+// Result: "%STATUS% 500"
+```
+
